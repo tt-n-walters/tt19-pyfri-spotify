@@ -37,7 +37,9 @@ class APIAuthentication:
         authorisation = self.id + ":" + self.secret
         encoded = authorisation.encode("utf-8")
         b64 = base64.b64encode(encoded).decode("utf-8")
-        print(b64)
+        return b64
+    
+    encoded = property(_get_encoded)
 
 
 if __name__ == "__main__":
@@ -48,8 +50,8 @@ if __name__ == "__main__":
     spotify = APIAuthentication(
         "https://api.spotify.com/v1/search?q=levels&type=album",
         "f5df0d5cf24d49a59daafcb0156d79a6",
-        "45a8c35e9b96490b875def5288a6ebac")
+        "")
 
     # http_test.authenticate(spotify)
-    spotify._get_encoded()
+    print(spotify.encoded)
     
