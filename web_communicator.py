@@ -34,7 +34,10 @@ class APIAuthentication:
         self.secret = secret
     
     def _get_encoded(self):
-        pass
+        authorisation = self.id + ":" + self.secret
+        encoded = authorisation.encode("utf-8")
+        b64 = base64.b64encode(encoded).decode("utf-8")
+        print(b64)
 
 
 if __name__ == "__main__":
