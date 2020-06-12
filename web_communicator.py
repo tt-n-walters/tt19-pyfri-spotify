@@ -50,5 +50,6 @@ if __name__ == "__main__":
         "f5df0d5cf24d49a59daafcb0156d79a6",
         "45a8c35e9b96490b875def5288a6ebac")
 
-    http_test.authenticate(spotify)
+    # http_test.authenticate(spotify)
+    spotify._get_encoded()
     
