@@ -25,7 +25,9 @@ class WebCommunicator:
             "grant_type": "client_credentials"
         }
         response = requests.post(auth.endpoint, data=data, headers=headers)
-        print(response.json())
+        response = response.json()
+        auth.token = response["token"]
+        auth.token_type = response["token_type"]
     
 
     def api(self, api, arguments):
