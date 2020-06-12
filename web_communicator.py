@@ -1,6 +1,7 @@
 import requests
 import base64
 
+secret = open(".env").read()
 
 class WebCommunicator:
     def __init__(self, url, media_type):
@@ -48,10 +49,10 @@ if __name__ == "__main__":
     # print(http_test.download_everything())
 
     spotify = APIAuthentication(
-        "https://api.spotify.com/v1/search?q=levels&type=album",
+        "https://accounts.spotify.com/api/token",
         "f5df0d5cf24d49a59daafcb0156d79a6",
-        "")
+        secret)
 
-    # http_test.authenticate(spotify)
-    print(spotify.encoded)
+    http_test.authenticate(spotify)
+    
     
