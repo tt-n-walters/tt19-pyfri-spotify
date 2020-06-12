@@ -25,7 +25,15 @@ class WebCommunicator:
             "grant_type": "client_credentials"
         }
         response = requests.post(auth.endpoint, data=data, headers=headers)
-        print(response)
+        print(response.json())
+    
+
+    def api(self, api, arguments):
+        headers = {
+            "Authorization": api.token_type + " " + api.token
+        }
+        response = requests.get(api.endpoint, params=arguments, headers=headers)
+        return response.json()
 
 
 class APIAuthentication:
@@ -38,6 +46,7 @@ class APIAuthentication:
         authorisation = self.id + ":" + self.secret
         encoded = authorisation.encode("utf-8")
         b64 = base64.b64encode(encoded).decode("utf-8")
+        print(b64)
         return b64
     
     encoded = property(_get_encoded)
