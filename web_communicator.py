@@ -26,7 +26,7 @@ class WebCommunicator:
         }
         response = requests.post(auth.endpoint, data=data, headers=headers)
         response = response.json()
-        auth.token = response["token"]
+        auth.token = response["access_token"]
         auth.token_type = response["token_type"]
     
 
@@ -65,5 +65,13 @@ if __name__ == "__main__":
         secret)
 
     http_test.authenticate(spotify)
+    spotify.endpoint = "https://api.spotify.com/v1/search"
+
+    arguments = {
+        "q": "Queen",
+        "type": "artist"
+    }
+
+    print(http_test.api(spotify, arguments))
     
     
