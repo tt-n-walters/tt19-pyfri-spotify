@@ -1,4 +1,5 @@
 import requests
+import base64
 
 
 class WebCommunicator:
@@ -23,6 +24,7 @@ class WebCommunicator:
             "grant_type": "client_credentials"
         }
         response = requests.post(auth.endpoint, data=data, headers=headers)
+        print(response)
 
 
 class APIAuthentication:
@@ -30,6 +32,9 @@ class APIAuthentication:
         self.endpoint = endpoint
         self.id = id
         self.secret = secret
+    
+    def _get_encoded(self):
+        pass
 
 
 if __name__ == "__main__":
