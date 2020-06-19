@@ -147,7 +147,7 @@ if __name__ == "__main__":
     spotify = Spotify(communicator, spotify_api)
     
 
-    artists = input("Search for any artists? y/n")
+    artists = input("Search for any artists? y/n   ")
     if artists == "y":
         artists = []
         for i in range(5):
@@ -156,10 +156,11 @@ if __name__ == "__main__":
             for j, result in enumerate(results):
                 print(j, ":", result["name"], result["link"])
             
-            choice = input("Which artist? 0-" + str(len(results) - 1))
+            choice = input("Which artist? 0-" + str(len(results) - 1) + "  ")
+            choice = results[int(choice)]
             artists.append(choice["id"])
 
-            another = input("Add another artist? y/n")
+            another = input("Add another artist? y/n   ")
             if another == "n":
                 break
     
