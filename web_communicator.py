@@ -1,7 +1,7 @@
 import requests
 import base64
 import time
-
+from pprint import pprint
 
 secret = open(".env").read()
 
@@ -93,6 +93,23 @@ class Spotify:
                 "link": item["external_urls"]["spotify"]
             })
         return custom_response
+    
+    def search_track(self, track):
+        self.api.endpoint = "https://api.spotify.com/v1/search"
+        arguments = {
+            "q": track,
+            "type": "track"
+        }
+        response = self.web_comminicator.api(self.api, arguments)
+        print(response)
+        items = response["tracks"]["items"]
+        custom_response = []
+        for item in items:
+            custom_response.append({
+                "name": item["name"],
+                "link": item["external_urls"]["spotify"]
+            })
+        return custom_response
 
 
 
@@ -108,7 +125,7 @@ if __name__ == "__main__":
     communicator.authenticate(spotify_api)
 
     spotify = Spotify(communicator, spotify_api)
-    for result in spotify.search_artist("Queen"):
+    for result in spotify.search_track("Don't stop me now"):
         print(result)
 
     
