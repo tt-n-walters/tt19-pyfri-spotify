@@ -1,5 +1,7 @@
 import requests
 import base64
+from pprint import pprint
+
 
 secret = open(".env").read()
 
@@ -72,6 +74,9 @@ if __name__ == "__main__":
         "type": "artist"
     }
 
-    print(http_test.api(spotify, arguments))
+    response = http_test.api(spotify, arguments)
+    items = response["artists"]["items"]
+    for item in items:
+        print(item["name"], item["external_urls"]["spotify"])
     
     
