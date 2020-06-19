@@ -1,6 +1,6 @@
 import requests
 import base64
-from pprint import pprint
+import time
 
 
 secret = open(".env").read()
@@ -30,6 +30,7 @@ class WebCommunicator:
         response = response.json()
         auth.token = response["access_token"]
         auth.token_type = response["token_type"]
+        auth.time_limit = time.time() + response["expires_in"]
     
 
     def api(self, api, arguments):
@@ -75,8 +76,8 @@ if __name__ == "__main__":
     }
 
     response = http_test.api(spotify, arguments)
-    items = response["artists"]["items"]
-    for item in items:
-        print(item["name"], item["external_urls"]["spotify"])
+    # items = response["artists"]["items"]
+    # for item in items:
+    #     print(item["name"], item["external_urls"]["spotify"])
     
     
