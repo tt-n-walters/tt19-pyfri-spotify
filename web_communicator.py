@@ -84,9 +84,15 @@ class Spotify:
             "type": "artist"
         }
         response = self.web_comminicator.api(self.api, arguments)
+
         items = response["artists"]["items"]
+        custom_response = []
         for item in items:
-            print(item["name"], item["external_urls"]["spotify"])
+            custom_response.append({
+                "name": item["name"],
+                "link": item["external_urls"]["spotify"]
+            })
+        return custom_response
 
 
 
