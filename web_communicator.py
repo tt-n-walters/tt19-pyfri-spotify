@@ -54,7 +54,21 @@ class APIAuthentication:
         print(b64)
         return b64
     
+
+    def _get_token(self):
+        current = time.time()
+        if current > self.time_limit:
+            input("Token expired. Please restart the program.")
+            exit()
+        else:
+            return self._token
+
+
+    def _set_token(self, token):
+        self._token = token
+    
     encoded = property(_get_encoded)
+    token = property(_get_token, _set_token)
 
 
 if __name__ == "__main__":
