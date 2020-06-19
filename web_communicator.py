@@ -163,7 +163,9 @@ if __name__ == "__main__":
             another = input("Add another artist? y/n   ")
             if another == "n":
                 break
-            
+    else:
+        artists = []
+    
     tracks = input("Search for any tracks? y/n   ")
     if tracks == "y":
         tracks = []
@@ -180,8 +182,10 @@ if __name__ == "__main__":
             another = input("Add another track? y/n   ")
             if another == "n":
                 break
+    else:
+        tracks = []
+        
     
     results = spotify.get_recommendations(artists, tracks)
     for result in results:
         print(result["artist_name"], "  |  ", result["track_name"], "  |  ", result["track_link"])
-        
