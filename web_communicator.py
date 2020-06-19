@@ -163,5 +163,23 @@ if __name__ == "__main__":
             another = input("Add another artist? y/n   ")
             if another == "n":
                 break
+            
+    tracks = input("Search for any tracks? y/n   ")
+    if tracks == "y":
+        tracks = []
+        for i in range(5):
+            query = input("Enter track name: ")
+            results = spotify.search_track(query)
+            for j, result in enumerate(results):
+                print(j, ":", result["name"], result["link"])
+            
+            choice = input("Which track? 0-" + str(len(results) - 1) + "  ")
+            choice = results[int(choice)]
+            tracks.append(choice["id"])
+
+            another = input("Add another track? y/n   ")
+            if another == "n":
+                break
     
-    
+    print(artists)
+    print(tracks)
