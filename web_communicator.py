@@ -112,6 +112,25 @@ class Spotify:
         return custom_response
 
 
+    def get_recommendations(self, artists=[], tracks=[]):
+        if len(artists) + len(tracks) > 5:
+            print("Too many inputs provided. Using only the first five.")
+        arguments = {
+            "seed_artists": ",".join(artists),
+            "seed_tracks": ",".join(tracks)
+        }
+        self.api.endpoint = "https://api.spotify.com/v1/recommendations"
+        response = self.web_comminicator.api(self.api, arguments)
+
+        custom_response = []
+        for item in response["tracks"]:
+            custom_response.append({
+                "track_name": item["name"],
+                "track_link": item["external_urls"]["spotify"],
+                "artist_name": item["artists"][0]["name"]
+            })
+        return custom_response
+
 
 if __name__ == "__main__":
 
