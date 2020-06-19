@@ -90,7 +90,8 @@ class Spotify:
         for item in items:
             custom_response.append({
                 "name": item["name"],
-                "link": item["external_urls"]["spotify"]
+                "link": item["external_urls"]["spotify"],
+                "id": item["id"]
             })
         return custom_response
     
@@ -107,7 +108,8 @@ class Spotify:
         for item in items:
             custom_response.append({
                 "name": item["name"],
-                "link": item["external_urls"]["spotify"]
+                "link": item["external_urls"]["spotify"],
+                "id": item["id"]
             })
         return custom_response
 
@@ -142,10 +144,23 @@ if __name__ == "__main__":
         secret)
 
     communicator.authenticate(spotify_api)
-
     spotify = Spotify(communicator, spotify_api)
-    for result in spotify.search_track("Don't stop me now"):
-        print(result)
+    
 
+    artists = input("Search for any artists? y/n")
+    if artists == "y":
+        artists = []
+        for i in range(5):
+            query = input("Enter artist name: ")
+            results = spotify.search_artist(query)
+            for j, result in enumerate(results):
+                print(j, ":", result["name"], result["link"])
+            
+            choice = input("Which artist? 0-" + str(len(results) - 1))
+            artists.append(choice["id"])
+
+            another = input("Add another artist? y/n")
+            if another == "n":
+                break
     
     
