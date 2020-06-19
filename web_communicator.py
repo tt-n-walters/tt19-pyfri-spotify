@@ -98,15 +98,18 @@ class Spotify:
 
 if __name__ == "__main__":
 
-    http_test = WebCommunicator("https://httpbin.org/", "text")
-    # print(http_test.download_everything())
+    communicator = WebCommunicator("https://httpbin.org/", "text")
 
-    spotify = APIAuthentication(
+    spotify_api = APIAuthentication(
         "https://accounts.spotify.com/api/token",
         "f5df0d5cf24d49a59daafcb0156d79a6",
         secret)
 
-    http_test.authenticate(spotify)
+    communicator.authenticate(spotify_api)
+
+    spotify = Spotify(communicator, spotify_api)
+    for result in spotify.search_artist("Queen"):
+        print(result)
 
     
     
