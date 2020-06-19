@@ -71,6 +71,16 @@ class APIAuthentication:
     token = property(_get_token, _set_token)
 
 
+
+class Spotify:
+    def __init__(self, web_comminicator, api):
+        self.web_comminicator = web_comminicator
+        self.api = api
+    
+    def search_artist(self, artist):
+        pass
+
+
 if __name__ == "__main__":
 
     http_test = WebCommunicator("https://httpbin.org/", "text")
