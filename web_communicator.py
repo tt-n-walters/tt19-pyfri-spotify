@@ -78,7 +78,16 @@ class Spotify:
         self.api = api
     
     def search_artist(self, artist):
-        pass
+        self.api.endpoint = "https://api.spotify.com/v1/search"
+        arguments = {
+            "q": artist,
+            "type": "artist"
+        }
+        response = self.web_comminicator.api(self.api, arguments)
+        items = response["artists"]["items"]
+        for item in items:
+            print(item["name"], item["external_urls"]["spotify"])
+
 
 
 if __name__ == "__main__":
@@ -92,16 +101,6 @@ if __name__ == "__main__":
         secret)
 
     http_test.authenticate(spotify)
-    spotify.endpoint = "https://api.spotify.com/v1/search"
 
-    arguments = {
-        "q": "Queen",
-        "type": "artist"
-    }
-
-    response = http_test.api(spotify, arguments)
-    # items = response["artists"]["items"]
-    # for item in items:
-    #     print(item["name"], item["external_urls"]["spotify"])
     
     
