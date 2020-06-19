@@ -181,5 +181,7 @@ if __name__ == "__main__":
             if another == "n":
                 break
     
-    print(artists)
-    print(tracks)
+    results = spotify.get_recommendations(artists, tracks)
+    for result in results:
+        print(result["artist_name"], "  |  ", result["track_name"], "  |  ", result["track_link"])
+        
